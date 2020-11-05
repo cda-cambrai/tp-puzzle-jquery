@@ -1,7 +1,16 @@
+.container {
+    width: 400px;
+    margin: auto;
+}
+
+.meta {
+    display: inline-block;
+    margin: 0 10px 10px 0;
+} 
+
 #game {
     width: 400px;
     height: 400px;
-    margin: auto;
     background-color: #cbd5e0;
     position: relative;
 }
