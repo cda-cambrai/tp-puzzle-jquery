@@ -26,7 +26,11 @@ for (var i = 1; i < 100; i++) {
     moveBloc('.bloc-'+random);
 }
 
-$('.bloc').click(function () {
+var shots = 0; // Représente le nombre de coups
+
+// Sélectionne toutes les classes .bloc
+// sauf celles qui ont la classe .bloc-empty
+$('.bloc').not('.bloc-empty').click(function () {
     // Récupèrer la position (top, left) du bloc cliqué
     var currentX = $(this).css('left'); // 0px
     var currentY = $(this).css('top'); // 100px
@@ -35,7 +39,29 @@ $('.bloc').click(function () {
     var emptyX = $('.bloc-empty').css('left');
     var emptyY = $('.bloc-empty').css('top');
 
+    // Calculer la différence de position entre les blocs
+    var diffX = Math.abs(parseInt(currentX) - parseInt(emptyX));
+    var diffY = Math.abs(parseInt(currentY) - parseInt(emptyY))
+
+    // On empêche le déplacement de plus de 2 bloc d'écarts
+    // Et aussi le déplacement en diagonale
+    if (diffX > 100 || diffY > 100 || diffX >= 100 && diffY >= 100) {
+        return;
+    }
+
     // Inverser la position des blocs
     $(this).css({top: emptyY, left: emptyX});
     $('.bloc-empty').css({top: currentY, left: currentX});
+
+    // Incrémenteur le compteur du jeu
+    shots = shots + 1;
+    $('#shots strong').text(shots);
 });
+
+// Chronomètre
+var seconds = 0;
+
+setInterval(function () {
+    seconds += 0.01 * 100;
+    $('#stopwatch strong').text(seconds / 100);
+}, 10);
