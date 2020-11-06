@@ -20,6 +20,8 @@
     height: 98px;
     line-height: 98px;
     background-color: #2d3748;
+    background-image: url(chaton.jpg);
+    background-size: 400px;
     border: 1px solid #1a202c;
     color: #cbd5e0;
     font-size: 40px;
@@ -30,4 +32,5 @@
 
 .bloc-empty {
     background-color: transparent;
+    background-image: none;
 }
